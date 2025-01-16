@@ -1,0 +1,6 @@
+#!/usr/bin/with-contenv sh
+
+# permissions
+chown -R abc:abc \
+	/config/.rclone.conf \
+	/root
