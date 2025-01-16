@@ -1,0 +1,42 @@
+#!/usr/bin/with-contenv bash
+# shellcheck disable=2154
+
+#rclone配置文件路径
+RCLONE_CONF="/config/rclone.conf"
+#容器内rclone挂载路径
+mount_point=/mnt/rclone
+
+if [ -z "$MOUNT_PATH" ]; then
+  echo "Error: MOUNT_PATH 变量未设置."
+  exit 1
+fi
+
+if [ -z "$REMOTE_NAME" ]; then
+  echo "Error: REMOTE_NAME 变量未设置."
+  exit 1
+fi
+
+mount_command="rclone mount "$MOUNT_PATH":/"$REMOTE_NAME" "$mount_point" \
+    --allow-other \
+    --log-file=/config/rclone.log \
+    --log-level INFO \
+    --config="$RCLONE_CONF" \
+	--header "Referer:" \
+	--copy-links \
+	--transfers=8 \
+	--multi-thread-streams 8 \
+	--no-gzip-encoding \
+	--no-check-certificate \
+	--allow-non-empty \
+	--umask 000 \
+	--dir-cache-time 24h \
+	--cache-dir=/cache \
+	--vfs-cache-mode full \
+	--buffer-size 512M \
+	--vfs-read-chunk-size 16M \
+	--vfs-read-chunk-size-limit 128M \
+	--vfs-cache-max-size 10G"
+
+echo "Rclone 挂载完成，保持容器运行..."
+
+exec s6-setuidgid root $mount_command

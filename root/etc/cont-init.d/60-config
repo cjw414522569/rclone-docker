@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv bash
+
+mkdir -p /root/.cache/rclone/webgui/plugins/config
+chmod -R 777 /root/.cache/rclone
+mkdir -p /mnt/rclone /config /cache
+chown -R 777 /config /mnt/rclone /cache
+
+echo "Done."
