@@ -4,7 +4,7 @@ Docker for Rclone FUSE 挂载到宿主机(通过rclone挂载网盘到宿主机)
 1. git clone https://github.com/cjw414522569/rclone-docker.git
 2. 修改/config/rclone.conf 或者 docker exec -it rclone-mount rclone --config="/config/rclone.conf" config
 3. docker-compose up -d
-4. 
+   
 目前只能在正常停止容器的状态下才能运行自动取消挂载脚本
 如果强制停止或者强制删除容器会在宿主机残留一个挂载点需要手动删除，如果不删除会导致下一次挂载这个文件夹失败
 
