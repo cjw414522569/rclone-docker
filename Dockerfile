@@ -9,12 +9,28 @@ RUN apk update && \
     fuse3 \
     bash \
     ca-certificates \
-	gettext \
+	s6 \
 	fusermount
+
+rm -rf \
+	/tmp/* \
+	/var/tmp/* \
+	/var/cache/apk/*
+
+# create abc user
+RUN \
+	groupmod -g 1000 users && \
+	useradd -u 911 -U -d /config -s /bin/false abc && \
+	usermod -G users abc && \
 
 #修改 /etc/fuse.conf 文件，启用 user_allow_other 选项
 RUN sed -i 's/#user_allow_other/user_allow_other/' /etc/fuse.conf
-# 创建必要的目录和设置权限
-RUN mkdir -p /media /cache /config /root/.config/rclone
+#
+ 创建必要的目录和设置权限
+RUN mkdir -p /mnt/rclone /cache /config /root/.config/rclone
 
 COPY root/ /
+
+VOLUME ["/config"]
+
+ENTRYPOINT ["/init"]
