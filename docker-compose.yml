@@ -9,8 +9,8 @@ services:
       - MOUNT_PATH=alist    #配置名称
       - REMOTE_NAME=onedirve   #路径
     volumes:
-      - ./media:/media:rshared
-      - ./rclone:/root/.config/rclone/
+      - ./rclone:/mnt/rclone:rshared
+      - ./config:/config/
     devices:
       - /dev/fuse
     cap_add:
