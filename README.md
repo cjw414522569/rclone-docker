@@ -2,7 +2,7 @@
 Docker for Rclone FUSE 挂载到宿主机(通过rclone挂载网盘到宿主机)
 
 1. git clone https://github.com/cjw414522569/rclone-docker.git
-2. 修改/config/rclone.conf
+2. 修改/config/rclone.conf 或者 docker exec -it Rclone-mount rclone --config="/config/.rclone.conf" config
 3. docker-compose up -d
 
 [alist]
