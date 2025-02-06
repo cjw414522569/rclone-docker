@@ -6,10 +6,14 @@ Docker for Rclone FUSE 挂载到宿主机(通过rclone挂载网盘到宿主机)
 3. docker-compose up -d
    
 目前只能在正常停止容器的状态下才能运行自动取消挂载脚本
+
 如果强制停止或者强制删除容器会在宿主机残留一个挂载点需要手动删除，如果不删除会导致下一次挂载这个文件夹失败
 
+
 如果强制停止或者强制删除容器可以用
+
 mount | grep /opt/rclone/media        查看是否有残留挂载点
+
 fusermount -u /opt/rclone1/media      删除残留挂载点
 
 ```
