@@ -17,6 +17,7 @@ mount | grep /opt/rclone/media        查看是否有残留挂载点
 fusermount -u /opt/rclone1/media      删除残留挂载点
 
 ```
+config/rclone.conf
 [alist]
 type = webdav
 url = https://alist.xxxx.cn/dav
