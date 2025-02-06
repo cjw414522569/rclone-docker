@@ -7,11 +7,11 @@ services:
     network_mode: bridge
     privileged: true
     environment: 
-      - MOUNT_PATH=alist    #配置名称
-      - REMOTE_NAME=onedirve   #路径
+      - MOUNT_PATH=alist       #webdav配置名称
+      - REMOTE_NAME=onedirve   #webdav路径
     volumes:
-      - ./media:/mnt/rclone:shared
-      - ./config:/config/
+      - ./media:/mnt/rclone:shared    #挂载目录
+      - ./config:/config/             #配置文件
     devices:
       - /dev/fuse:/dev/fuse
     cap_add:
